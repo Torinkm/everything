@@ -1,6 +1,7 @@
 import pygame as pg
 import numpy as np
 
+from Block import *
 
 class Main:
     def __init__(self):
@@ -8,6 +9,7 @@ class Main:
         self.screen = pg.display.set_mode([0,0])
         self.running = True #Switch to false when game quit
         self.state = "start" #game state, changes for states like paused and game over
+        self.mousedown = False
 
         self.currentK = [] #list of all keys currently down
         self.keys = [pg.K_a, pg.K_b, pg.K_c, pg.K_d, pg.K_e, pg.K_f, pg.K_g, pg.K_h, pg.K_i, pg.K_j, pg.K_k, pg.K_l, pg.K_m,
@@ -17,6 +19,38 @@ class Main:
 
         self.mousebox = pg.Rect(0,0,5,5)
 
+        def updall(arr):
+            for i in arr:
+                i.update()
+
+        def drawall(arr):
+            for i in arr:
+                i.draw()
+
+
+        self.current_presents = [] #List of all the presents currently on screen.
+        self.tiles = [] #list of all tiles
+
+        
+
+        alt = False
+        for x in range(5):
+            for y in range(5):
+                usex = 420+((x+1)*216)
+                usey = 0+((y)*216)
+
+                if alt:
+                    self.tiles.append(Tile(self,(usex,usey),(100,100,100)))
+                    alt = False
+                else:
+                    self.tiles.append(Tile(self,(usex,usey),(140,140,140)))
+                    alt = True
+
+
+        self.current_presents.append(Present(self,(255,0,0),[0,0],1,1))
+        self.current_presents.append(Present(self,(255,0,0),[3,3],2,1))
+
+        self.active_present = self.current_presents[0]
 
 
 
@@ -53,6 +87,16 @@ class Main:
             self.mousebox.y = pg.mouse.get_pos()[1]
 
             if self.state == "start":
+                
+                updall(self.tiles)
+                updall(self.current_presents)
+
+                drawall(self.tiles)
+                drawall(self.current_presents)
+        
+
+
+            elif self.state == "level 1":
                 pass
             
 
