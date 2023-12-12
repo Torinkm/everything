@@ -65,7 +65,8 @@ class Main:
 
         #MAIN LOOP!!!!
         while self.running:
-            self.clock.tick(120)
+            delta = self.clock.tick(120) #delta is the seconds between frames eg: 0.02s
+            fps = round(self.clock.get_fps())
 
             self.screen.fill(self.backgroundCol)
 
