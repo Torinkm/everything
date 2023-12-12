@@ -30,7 +30,7 @@ class Main:
         self.keys = [pg.K_a, pg.K_b, pg.K_c, pg.K_d, pg.K_e, pg.K_f, pg.K_g, pg.K_h, pg.K_i, pg.K_j, pg.K_k, pg.K_l, pg.K_m,
                     pg.K_n, pg.K_o, pg.K_p, pg.K_q, pg.K_r, pg.K_s, pg.K_t, pg.K_u, pg.K_v, pg.K_w, pg.K_x, pg.K_y, pg.K_z]
 
-        self.levels = ["level 1","level 2", "level 3","level 4","level 5"]
+        self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6"]
 
         self.all_cutscenes = [Cutscene(self,["2.1","2.2","2.3"],"level 1"),
                                 Cutscene(self,["3.1","3.2"],"level 4")]
@@ -318,6 +318,7 @@ class Main:
 
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,2],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[2,2],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,4],1,1,"Rock"))
                     
                     self.current_presents.append(Collectible(self,(255,0,0),[0,0],1,1,"Pocket_Knife"))
 
@@ -337,18 +338,20 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[1,2],1,1,"Golden_Car"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[3,3],1,1,"Golden_Car"))
 
-                    self.current_presents.append(Present_Hori(self,(255,0,0),[0,3],3,1,"Anuc"))
-                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,0],3,1,"Anuc"))
-                    self.current_presents.append(Present_Vert(self,(255,0,0),[1,0],1,2,"Car_1x2"))
-                    self.current_presents.append(Present_Vert(self,(255,0,0),[4,1],1,2,"Car_1x2"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,2],2,1,"Car_2x1"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,1],3,1,"Car_2x1"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[3,0],1,1,"Car_2x1"))
+                    self.current_presents.append(Present_Vert(self,(255,0,0),[2,3],1,2,"Car_1x2"))
+                    self.current_presents.append(Present_Vert(self,(255,0,0),[0,3],1,1,"Car_1x2"))
 
 
-                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,2],1,1,"Rock"))
-                    self.current_presents.append(Present_Rock(self,(255,0,0),[2,2],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,3],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[1,2],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,4],1,1,"Rock"))
                     
-                    self.current_presents.append(Collectible(self,(255,0,0),[0,0],1,1,"Pocket_Knife"))
 
                     
 
