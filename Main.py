@@ -62,15 +62,15 @@ class Main:
             self.mousebox.y = pg.mouse.get_pos()[1]
 
             if self.state == "main menu":
-                if self.start_button.update():
+                if self.start_button.update(self.mousebox):
                     self.state = "play"
                 self.start_button.draw(self.screen)
 
-                if self.options_button.update():
+                if self.options_button.update(self.mousebox):
                     self.state = "options menu"
                 self.options_button.draw(self.screen)
 
-                if self.exit_button.update():
+                if self.exit_button.update(self.mousebox):
                     self.running = False
                 self.exit_button.draw(self.screen)
 

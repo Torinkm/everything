@@ -10,10 +10,9 @@ class Button():
         self.rect.topleft = (x-width/2, y-height/2)
         self.clicked = False
 
-    def update(self):
+    def update(self,mousebox):
         action = False
-        pos = pg.mouse.get_pos()
-        if self.rect.collidepoint(pos):
+        if self.rect.colliderect(mousebox):
             if pg.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.clicked = True
                 action = True
