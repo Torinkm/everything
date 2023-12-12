@@ -1,6 +1,8 @@
 import pygame as pg
 import numpy as np
-from buttons import Button
+import os
+import random as rng
+from buttons import Button, Slider
 
 from cutscenes import *
 from Block import *
@@ -12,6 +14,11 @@ class Main:
     def __init__(self):
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH,self.SCREEN_HEIGHT),pg.RESIZABLE|pg.SCALED,vsync=1)
+        self.jukebox = os.listdir("Music")
+        pg.init()
+        pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
+        pg.mixer.music.play(1)
+        pg.mixer.music.set_volume(0.5)
         self.running = True #Switch to false when game quit
         self.state = "main menu" #game state, changes for states like paused and game over
         self.mousedown = False
@@ -76,10 +83,19 @@ class Main:
         self.options_button = Button(self.SCREEN_WIDTH/2, 400, self.options_img, 1)
         self.exit_button = Button(self.SCREEN_WIDTH/2,600, self.exit_img, 1)
 
+        self.back_button = Button(200,100, self.exit_img, 1)
+
+        self.sfx_Volume_Slider = Slider(500,300,label="SFX")
+        self.music_Volume_Slider = Slider(500,500,label="Music")
+
 
         #MAIN LOOP!!!!
         while self.running:
-            self.clock.tick(120)
+            delta = self.clock.tick(120) #delta is the seconds between frames eg: 0.02s
+            fps = round(self.clock.get_fps())
+            if not pg.mixer.music.get_busy():
+                pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
+                pg.mixer.music.play(1)
 
             self.screen.fill(self.backgroundCol)
 
@@ -109,8 +125,7 @@ class Main:
             self.mousebox.x = pg.mouse.get_pos()[0]
             self.mousebox.y = pg.mouse.get_pos()[1]
 
-            if self.state == "start":
-                
+            if self.state == "start":                
                 updall(self.tiles)
                 updall(self.current_presents)
 
@@ -162,11 +177,11 @@ class Main:
 
                 self.start_button.draw(self.screen)
 
-                if self.options_button.update():
+                if self.options_button.update(self.mousebox):
                     self.state = "options menu"
                 self.options_button.draw(self.screen)
 
-                if self.exit_button.update():
+                if self.exit_button.update(self.mousebox):
                     self.running = False
                 self.exit_button.draw(self.screen)
 
@@ -282,6 +297,17 @@ class Main:
 
                 
                 self.state = self.changing_state_to
+            elif self.state == "options menu":
+                if self.back_button.update(self.mousebox):
+                    self.state = "main menu"
+                self.back_button.draw(self.screen)
+                self.sfx_Volume_Slider.update(self.mousebox)
+                self.volume = (self.sfx_Volume_Slider.draw(self.screen))
+                pg.mixer.music.set_volume(self.music_Volume_Slider.update(self.mousebox))
+                self.music_Volume_Slider.draw(self.screen)
+
+                
+
 
             pg.display.flip()
 
