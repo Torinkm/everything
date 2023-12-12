@@ -20,7 +20,7 @@ class Main:
         pg.mixer.music.play(1)
         pg.mixer.music.set_volume(0)
         self.running = True #Switch to false when game quit
-        self.state = "main menu" #game state, changes for states like paused and game over
+        self.state = "title_screen" #game state, changes for states like paused and game over
         self.mousedown = False
         self.changing_state_to = ""
 
@@ -178,7 +178,13 @@ class Main:
                         
                     else:
                         self.state = "cutscene"
-
+            
+            
+            elif self.state == "title_screen":
+                self.screen.blit(pg.image.load(("Assets/Title_Screen.png")),(0,0))
+                
+                if pg.K_s in self.currentK:
+                    self.state = "main menu"
 
             
             elif self.state == "main menu":
@@ -226,7 +232,7 @@ class Main:
 
                     self.current_presents.append(Golden_Present(self,(100,0,100),[0,1],1,1,"Anuc"))
 
-                    self.current_presents.append(Present(self,(255,0,0),[2,1],3,1,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[2,1],3,1,"Anuc_2x1"))
                     self.current_presents.append(Present(self,(255,0,0),[3,2],1,2,"Anuc_1x2"))
                     self.current_presents.append(Present(self,(255,0,0),[2,4],2,1,"Anuc_2x1"))
 
@@ -273,7 +279,7 @@ class Main:
 
                     self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc"))
 
-                    self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc_1x2"))
                     self.current_presents.append(Present(self,(255,0,0),[2,1],2,1,"Anuc_2x1"))
                     self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc_1x2"))
                     self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc_1x2"))
@@ -300,12 +306,12 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Golden_Car"))
 
                     self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc"))
                     self.current_presents.append(Present_Hori(self,(255,0,0),[2,1],2,1,"Car_2x1"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc_1x2"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc_1x2"))
+                    self.current_presents.append(Present_Vert(self,(255,0,0),[4,0],1,2,"Car_1x2"))
+                    self.current_presents.append(Present_Vert(self,(255,0,0),[4,2],1,2,"Car_1x2"))
 
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,0],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,2],1,1,"Rock"))
