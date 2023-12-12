@@ -431,10 +431,15 @@ class Golden_Present():
 
                 if self.right_win:
                     self.right_win = False
-                    temp = self.app.levels.index(self.app.state)
-                    temp += 1
-                    self.app.state = "changing state"
-                    self.app.changing_state_to = self.app.levels[temp]
+                    
+                    
+                    if self.app.level_to_level:
+                        temp = self.app.levels.index(self.app.state)
+                        temp += 1
+                        self.app.state = "changing state"
+                        self.app.changing_state_to = self.app.levels[temp]
+                    else:
+                        self.app.state = "cutscene"
 
 
             if pg.K_a in self.app.currentK and self.left_move:
@@ -1421,8 +1426,6 @@ class Present_Hori():
                 if self.right_win:
                     temp = self.app.levels.index(self.app.state)
                     temp += 1
-                    self.app.state = "changing state"
-                    self.app.changing_state_to = self.app.levels[temp]
 
 
             if pg.K_a in self.app.currentK and self.left_move:

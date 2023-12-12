@@ -18,7 +18,7 @@ class Main:
         pg.init()
         pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
         pg.mixer.music.play(1)
-        pg.mixer.music.set_volume(0.5)
+        pg.mixer.music.set_volume(0)
         self.running = True #Switch to false when game quit
         self.state = "main menu" #game state, changes for states like paused and game over
         self.mousedown = False
@@ -38,6 +38,8 @@ class Main:
         self.current_cutscene = self.all_cutscenes[0]
 
         self.level_to_level = True
+        
+        self.win = False
 
         self.collectible_count = 0
 
@@ -145,26 +147,44 @@ class Main:
                     self.changing_state_to = temp
                     self.state = "changing state"
                     
-                elif self.state in self.levels and self.level_to_level:
+                if self.state in self.levels:
                     bg_temp = self.levels.index(self.state)
                     bg_temp = str(bg_temp)
                     self.screen.blit(pg.image.load(("Assets/Background_"+bg_temp+".png")),(0,0))
-
+    
                     drawall(self.tiles)
                     pg.draw.rect(self.screen,(0,0,255),(420+(216*(self.wintile[0]+1)),
                                                         216*self.wintile[1],
                                                         216,216))
                     drawall(self.current_presents)
-
+    
                     self.screen.blit(pg.image.load(("Assets/Restart.png")),(100,920))
-
-
+    
+    
                     self.active_present.big_draw()
+                    
+                    
+                    
+                    
+                if self.win:
+                    
+                    if self.level_to_level:
+                        temp = self.levels.index(self.state)
+                        temp +=1
+                        
+                        self.changing_state_to = self.levels[temp]
+                        
+                        self.state = "changing state"
+                        
+                    else:
+                        self.state = "cutscene"
 
 
             
             elif self.state == "main menu":
-                if self.start_button.update():
+                
+                
+                if self.start_button.update(self.mousebox):
                     self.state = "cutscene"
 
                     
@@ -184,6 +204,9 @@ class Main:
                 if self.exit_button.update(self.mousebox):
                     self.running = False
                 self.exit_button.draw(self.screen)
+
+
+
 
 
             elif self.state == "cutscene":
