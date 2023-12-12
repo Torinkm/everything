@@ -32,8 +32,8 @@ class Main:
 
         self.levels = ["level 1","level 2", "level 3","level 4"]
 
-        self.all_cutscenes = [Cutscene(self,["1.1","1.2"],"level 1"),
-                                Cutscene(self,["1.2","1.1"],"level 4")]
+        self.all_cutscenes = [Cutscene(self,["2.1","2.2","2.3"],"level 1"),
+                                Cutscene(self,["3.1","3.2"],"level 4")]
 
         self.current_cutscene = self.all_cutscenes[0]
 
@@ -153,12 +153,12 @@ class Main:
                     self.screen.blit(pg.image.load(("Assets/Background_"+bg_temp+".png")),(0,0))
     
                     drawall(self.tiles)
+                    """
                     pg.draw.rect(self.screen,(0,0,255),(420+(216*(self.wintile[0]+1)),
                                                         216*self.wintile[1],
                                                         216,216))
+                    """
                     drawall(self.current_presents)
-    
-                    self.screen.blit(pg.image.load(("Assets/Restart.png")),(100,920))
     
     
                     self.active_present.big_draw()
@@ -224,11 +224,11 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[0,1],1,1,"Anuc2"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[0,1],1,1,"Anuc"))
 
                     self.current_presents.append(Present(self,(255,0,0),[2,1],3,1,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[3,2],1,2,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[2,4],2,1,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[3,2],1,2,"Anuc_1x2"))
+                    self.current_presents.append(Present(self,(255,0,0),[2,4],2,1,"Anuc_2x1"))
 
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,0],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,2],1,1,"Rock"))
@@ -248,11 +248,11 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[1,2],1,1,"Anuc2"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[1,2],1,1,"Anuc"))
 
-                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,3],1,2,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[3,2],2,1,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc_1x2"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,3],1,2,"Anuc_1x2"))
+                    self.current_presents.append(Present(self,(255,0,0),[3,2],2,1,"Anuc_2x1"))
 
                     
                     
@@ -271,12 +271,12 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc2"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc"))
 
                     self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[2,1],2,1,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[2,1],2,1,"Anuc_2x1"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc_1x2"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc_1x2"))
 
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,0],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,2],1,1,"Rock"))
@@ -300,12 +300,12 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc2"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc"))
 
                     self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[2,1],2,1,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc"))
-                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,1],2,1,"Car_2x1"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc_1x2"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc_1x2"))
 
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,0],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,2],1,1,"Rock"))
