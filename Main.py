@@ -42,7 +42,8 @@ class Main:
         self.win = False
 
         self.collectible_count = 0
-
+        
+        self.player_items = []
 
         self.mousebox = pg.Rect(0,0,5,5)
 
@@ -219,6 +220,7 @@ class Main:
 
                 self.current_cutscene.update()
                 self.current_cutscene.draw()
+                
             
             elif self.state == "changing state":
                 
@@ -289,7 +291,7 @@ class Main:
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,4],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,3],1,1,"Rock"))
 
-                    self.current_presents.append(Collectible(self,(255,0,0),[0,4],1,1,"Collectible"))
+                    self.current_presents.append(Collectible(self,(255,0,0),[0,4],1,1,"Bolt_Cutters"))
                     
 
                     self.active_present = self.current_presents[0]
@@ -318,7 +320,7 @@ class Main:
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,4],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,3],1,1,"Rock"))
 
-                    self.current_presents.append(Collectible(self,(255,0,0),[0,4],1,1,"Collectible"))
+                    self.current_presents.append(Collectible(self,(255,0,0),[0,4],1,1,"Bolt_Cutters"))
                     
 
                     self.active_present = self.current_presents[0]

@@ -4,6 +4,8 @@ class Collectible():
     def __init__(self,app,rgb,pos,width,height,image):
 
         self.app = app
+        
+        self.name = image.replace("_"," ")
 
         
         
@@ -47,6 +49,7 @@ class Collectible():
         if self.app.current_presents[0].posx == self.posx and self.app.current_presents[0].posy == self.posy:
             self.app.current_presents.remove(self)
             self.app.collectible_count += 1
+            self.app.player_items.append(self.name)
 
         
 
