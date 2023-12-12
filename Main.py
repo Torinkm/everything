@@ -2,6 +2,7 @@ import pygame as pg
 import numpy as np
 from buttons import Button
 
+from Block import *
 
 class Main:
     SCREEN_HEIGHT = 1080
@@ -10,7 +11,8 @@ class Main:
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH,self.SCREEN_HEIGHT),pg.RESIZABLE|pg.SCALED,vsync=1)
         self.running = True #Switch to false when game quit
-        self.state = "main menu" #game state, changes for states like paused and game over
+        self.state = "start" #game state, changes for states like paused and game over
+        self.mousedown = False
 
         self.backgroundCol = [202, 228, 241]
 
@@ -20,6 +22,38 @@ class Main:
 
         self.mousebox = pg.Rect(0,0,5,5)
 
+        def updall(arr):
+            for i in arr:
+                i.update()
+
+        def drawall(arr):
+            for i in arr:
+                i.draw()
+
+
+        self.current_presents = [] #List of all the presents currently on screen.
+        self.tiles = [] #list of all tiles
+
+        
+
+        alt = False
+        for x in range(5):
+            for y in range(5):
+                usex = 420+((x+1)*216)
+                usey = 0+((y)*216)
+
+                if alt:
+                    self.tiles.append(Tile(self,(usex,usey),(100,100,100)))
+                    alt = False
+                else:
+                    self.tiles.append(Tile(self,(usex,usey),(140,140,140)))
+                    alt = True
+
+
+        self.current_presents.append(Present(self,(255,0,0),[0,0],1,1))
+        self.current_presents.append(Present(self,(255,0,0),[3,3],2,1))
+
+        self.active_present = self.current_presents[0]
         self.start_img = pg.image.load('Assets/start_btn.png').convert_alpha()
         self.exit_img = pg.image.load('Assets/exit_btn.png').convert_alpha()
         self.options_img = pg.image.load('Assets/options_btn.png').convert_alpha()
@@ -61,7 +95,21 @@ class Main:
             self.mousebox.x = pg.mouse.get_pos()[0]
             self.mousebox.y = pg.mouse.get_pos()[1]
 
-            if self.state == "main menu":
+            if self.state == "start":
+                
+                updall(self.tiles)
+                updall(self.current_presents)
+
+                drawall(self.tiles)
+                drawall(self.current_presents)
+        
+
+
+            elif self.state == "level 1":
+                pass
+            
+            
+            elif self.state == "main menu":
                 if self.start_button.update(self.mousebox):
                     self.state = "play"
                 self.start_button.draw(self.screen)
