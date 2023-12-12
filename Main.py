@@ -2,7 +2,9 @@ import pygame as pg
 import numpy as np
 from buttons import Button
 
+from cutscenes import *
 from Block import *
+from Collectibles import *
 
 class Main:
     SCREEN_HEIGHT = 1080
@@ -11,14 +13,27 @@ class Main:
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH,self.SCREEN_HEIGHT),pg.RESIZABLE|pg.SCALED,vsync=1)
         self.running = True #Switch to false when game quit
-        self.state = "start" #game state, changes for states like paused and game over
+        self.state = "main menu" #game state, changes for states like paused and game over
         self.mousedown = False
+        self.changing_state_to = ""
 
         self.backgroundCol = [202, 228, 241]
 
         self.currentK = [] #list of all keys currently down
         self.keys = [pg.K_a, pg.K_b, pg.K_c, pg.K_d, pg.K_e, pg.K_f, pg.K_g, pg.K_h, pg.K_i, pg.K_j, pg.K_k, pg.K_l, pg.K_m,
                     pg.K_n, pg.K_o, pg.K_p, pg.K_q, pg.K_r, pg.K_s, pg.K_t, pg.K_u, pg.K_v, pg.K_w, pg.K_x, pg.K_y, pg.K_z]
+
+        self.levels = ["level 1","level 2", "level 3","level 4"]
+
+        self.all_cutscenes = [Cutscene(self,["1.1","1.2"],"level 1"),
+                                Cutscene(self,["1.2","1.1"],"level 4")]
+
+        self.current_cutscene = self.all_cutscenes[0]
+
+        self.level_to_level = True
+
+        self.collectible_count = 0
+
 
         self.mousebox = pg.Rect(0,0,5,5)
 
@@ -50,10 +65,9 @@ class Main:
                     alt = True
 
 
-        self.current_presents.append(Present(self,(255,0,0),[0,0],1,1))
-        self.current_presents.append(Present(self,(255,0,0),[3,3],2,1))
 
-        self.active_present = self.current_presents[0]
+
+
         self.start_img = pg.image.load('Assets/start_btn.png').convert_alpha()
         self.exit_img = pg.image.load('Assets/exit_btn.png').convert_alpha()
         self.options_img = pg.image.load('Assets/options_btn.png').convert_alpha()
@@ -104,14 +118,48 @@ class Main:
                 drawall(self.current_presents)
         
 
+            elif self.state in self.levels:
 
-            elif self.state == "level 1":
-                pass
-            
+                updall(self.tiles)
+                updall(self.current_presents)
+
+                print("after updating tiles state is "+str(self.state))
+
+                if self.mousedown and pg.Rect.colliderect(self.mousebox,pg.Rect(100,920,100,100)):
+                    temp = self.state
+                    self.changing_state_to = temp
+                    self.state = "changing state"
+                    
+                elif self.state in self.levels and self.level_to_level:
+                    bg_temp = self.levels.index(self.state)
+                    bg_temp = str(bg_temp)
+                    self.screen.blit(pg.image.load(("Assets/Background_"+bg_temp+".png")),(0,0))
+
+                    drawall(self.tiles)
+                    pg.draw.rect(self.screen,(0,0,255),(420+(216*(self.wintile[0]+1)),
+                                                        216*self.wintile[1],
+                                                        216,216))
+                    drawall(self.current_presents)
+
+                    self.screen.blit(pg.image.load(("Assets/Restart.png")),(100,920))
+
+
+                    self.active_present.big_draw()
+
+
             
             elif self.state == "main menu":
                 if self.start_button.update():
-                    self.state = "play"
+                    self.state = "cutscene"
+
+                    
+
+
+
+
+
+
+
                 self.start_button.draw(self.screen)
 
                 if self.options_button.update():
@@ -121,6 +169,119 @@ class Main:
                 if self.exit_button.update():
                     self.running = False
                 self.exit_button.draw(self.screen)
+
+
+            elif self.state == "cutscene":
+
+                self.current_cutscene.update()
+                self.current_cutscene.draw()
+            
+            elif self.state == "changing state":
+                
+                if self.changing_state_to == "level 2":
+
+                    self.wintile = [5,0]
+
+                    self.level_to_level = True
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[0,1],1,1,"Anuc2"))
+
+                    self.current_presents.append(Present(self,(255,0,0),[2,1],3,1,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[3,2],1,2,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[2,4],2,1,"Anuc"))
+
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[3,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,2],1,1,"Rock"))
+                    
+                    
+
+                    self.active_present = self.current_presents[0]
+
+
+
+
+                if self.changing_state_to == "level 1":
+
+                    self.wintile = [5,0]
+
+                    self.level_to_level = True
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[1,2],1,1,"Anuc2"))
+
+                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,3],1,2,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[3,2],2,1,"Anuc"))
+
+                    
+                    
+
+                    self.active_present = self.current_presents[0]
+
+                
+
+                
+
+                if self.changing_state_to == "level 3":
+
+                    self.wintile = [5,3]
+
+                    self.level_to_level = False
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc2"))
+
+                    self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[2,1],2,1,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc"))
+
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[3,2],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,4],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,3],1,1,"Rock"))
+
+                    self.current_presents.append(Collectible(self,(255,0,0),[0,4],1,1,"Collectible"))
+                    
+
+                    self.active_present = self.current_presents[0]
+
+
+
+
+
+                if self.changing_state_to == "level 4":
+
+                    self.wintile = [5,3]
+
+                    self.level_to_level = False
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,0],1,1,"Anuc2"))
+
+                    self.current_presents.append(Present(self,(255,0,0),[1,0],1,3,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[2,1],2,1,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,0],1,2,"Anuc"))
+                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,2,"Anuc"))
+
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[3,2],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,4],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,3],1,1,"Rock"))
+
+                    self.current_presents.append(Collectible(self,(255,0,0),[0,4],1,1,"Collectible"))
+                    
+
+                    self.active_present = self.current_presents[0]
+
+
+                
+                self.state = self.changing_state_to
 
             pg.display.flip()
 
