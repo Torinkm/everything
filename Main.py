@@ -357,6 +357,37 @@ class Main:
 
                     self.active_present = self.current_presents[0]
                     
+                
+                
+                if self.changing_state_to == "level 6":
+                    
+                    
+                    self.wintile = [5,4]
+
+                    self.level_to_level = True
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[2,3],1,1,"Golden_Car"))
+
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[0,0],3,1,"Car_2x1"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,2],2,1,"Car_2x1"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,4],1,1,"Car_2x1"))
+                    
+                    self.current_presents.append(Present_Vert(self,(255,0,0),[1,2],1,2,"Car_1x2"))
+                    self.current_presents.append(Present_Vert(self,(255,0,0),[3,3],1,2,"Car_1x2"))
+
+
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[2,1],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,3],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,3],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[3,1],1,1,"Rock"))
+                    
+
+                    
+
+                    self.active_present = self.current_presents[0]
+                    
 
 
                 
