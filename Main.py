@@ -111,9 +111,7 @@ class Main:
             self.mousebox.x = pg.mouse.get_pos()[0]
             self.mousebox.y = pg.mouse.get_pos()[1]
 
-            if self.state == "start":
-                self.state = "main menu"
-                
+            if self.state == "start":                
                 updall(self.tiles)
                 updall(self.current_presents)
 
