@@ -4,10 +4,10 @@ import sys
 
 
 
-SCREEN_HEIGHT = 500
-SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 1080
+SCREEN_WIDTH = 1920
 
-screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT),RESIZABLE|SCALED,vsync=1)
 pygame.display.set_caption('Button Demo')
 
 start_img = pygame.image.load('Assets/start_btn.png').convert_alpha()
@@ -20,7 +20,7 @@ class Button():
         height = image.get_height()
         self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
         self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
+        self.rect.topleft = (x-width/2, y-height/2)
         self.clicked = False
 
     def draw(self):
@@ -40,25 +40,28 @@ class Button():
 
 
 
-start_button = Button(100,200, start_img, 1 )
-exit_button = Button(450,200, exit_img, 1)
-options_button = Button(250, 50, options_img, 1)
+start_button = Button(SCREEN_WIDTH/2,200, start_img, 1 )
+options_button = Button(SCREEN_WIDTH/2, 400, options_img, 1)
+exit_button = Button(SCREEN_WIDTH/2,600, exit_img, 1)
+
 
 
 run = True
+play = False
 while run:
 
     screen.fill((202, 228, 241))
-
-    if start_button.draw():
-        print("START")
-    if options_button.draw():
-        print("OPTIONS")
-    if exit_button.draw():
-        print("EXIT")
-        run = False
-
-    
+    if play:
+        ...
+    else:
+        if start_button.draw():
+            print("START")
+            play = True
+        if options_button.draw():
+            print("OPTIONS")
+        if exit_button.draw():
+            print("EXIT")
+            run = False
 
     for event in pygame.event.get():
         if event.type ==pygame.QUIT:
