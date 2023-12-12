@@ -10,9 +10,9 @@ SCREEN_WIDTH = 800
 screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 pygame.display.set_caption('Button Demo')
 
-start_img = pygame.image.load('start_btn.png').convert_alpha()
-exit_img = pygame.image.load('exit_btn.png').convert_alpha()
-options_img = pygame.image.load('options_btn.png').convert_alpha()
+start_img = pygame.image.load('Assets/start_btn.png').convert_alpha()
+exit_img = pygame.image.load('Assets/exit_btn.png').convert_alpha()
+options_img = pygame.image.load('Assets/options_btn.png').convert_alpha()
 
 class Button():
     def __init__(self, x, y, image, scale):
