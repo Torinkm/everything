@@ -1,6 +1,6 @@
 import pygame as pg
 import numpy as np
-from buttons import Button
+from buttons import Button, Slider
 
 from Block import *
 
@@ -97,6 +97,7 @@ class Main:
             self.mousebox.y = pg.mouse.get_pos()[1]
 
             if self.state == "start":
+                self.state == "main menu"
                 
                 updall(self.tiles)
                 updall(self.current_presents)
@@ -122,6 +123,11 @@ class Main:
                 if self.exit_button.update(self.mousebox):
                     self.running = False
                 self.exit_button.draw(self.screen)
+
+            elif self.state == "options menu":
+                ...
+                
+
 
             pg.display.flip()
 
