@@ -7,6 +7,7 @@ from buttons import Button, Slider
 from cutscenes import *
 from Block import *
 from Collectibles import *
+from Special_Blocks import *
 
 class Main:
     SCREEN_HEIGHT = 1080
@@ -142,7 +143,7 @@ class Main:
                 updall(self.tiles)
                 updall(self.current_presents)
 
-                print("after updating tiles state is "+str(self.state))
+                #print("after updating tiles state is "+str(self.state))
 
                 if self.mousedown and pg.Rect.colliderect(self.mousebox,pg.Rect(100,920,100,100)):
                     temp = self.state
@@ -263,6 +264,9 @@ class Main:
                     self.current_presents.append(Present(self,(255,0,0),[4,3],1,2,"Anuc_1x2"))
                     self.current_presents.append(Present(self,(255,0,0),[3,2],2,1,"Anuc_2x1"))
 
+
+                    #self.current_presents.append(Corner_Block(self,[0,0],[0,3],"Scissors"))
+                    self.current_presents.append(Corner_Block(self,[0,0],[0,3],"Scissors"))
                     
                     
 
