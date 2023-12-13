@@ -267,7 +267,7 @@ class Main:
 
                     #self.current_presents.append(Corner_Block(self,[0,0],[0,3],"Scissors"))
                     #self.current_presents.append(Corner_Block(self,[1,1],[0,3],"Scissors"))
-                    self.current_presents.append(Corner_Block(self,[0,1],[0,3],"Scissors"))
+                    #self.current_presents.append(Corner_Block(self,[0,1],[0,3],"Scissors"))
                     
                     
 
@@ -388,6 +388,38 @@ class Main:
                     self.current_presents.append(Present_Rock(self,(255,0,0),[0,3],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,3],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,1],1,1,"Rock"))
+                    
+
+                    
+
+                    self.active_present = self.current_presents[0]
+                    
+
+                    
+                    
+                if self.changing_state_to == "level 7":
+                    
+                    
+                    self.wintile = [5,4]
+
+                    self.level_to_level = True
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[4,0],1,1,"Needle"))
+                    
+                    
+                    self.current_presents.append(Corner_Block(self,[1,0],[3,0],"Scissors"))
+                    self.current_presents.append(Corner_Block(self,[1,1],[1,1],"Scissors"))
+
+
+
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[1,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[0,4],4,1,"Rock"))
+                    
+                    self.current_presents.append(Present(self,(255,0,0),[4,2],1,3,"Anuc"))
+                    
+                    self.current_presents.append(Collectible(self,(255,0,0),[0,0],1,1,"Lock_Pick"))
                     
 
                     
