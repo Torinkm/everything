@@ -266,7 +266,8 @@ class Main:
 
 
                     #self.current_presents.append(Corner_Block(self,[0,0],[0,3],"Scissors"))
-                    self.current_presents.append(Corner_Block(self,[0,0],[0,3],"Scissors"))
+                    #self.current_presents.append(Corner_Block(self,[1,1],[0,3],"Scissors"))
+                    self.current_presents.append(Corner_Block(self,[0,1],[0,3],"Scissors"))
                     
                     
 

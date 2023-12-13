@@ -47,6 +47,16 @@ class Corner_Block():
         if self.gap == [1,0]:
             self.image = pg.transform.rotate(self.image,-90)
             
+        elif self.gap == [0,0]:
+            self.image = pg.transform.rotate(self.image,0)
+            
+        elif self.gap == [0,1]:
+            self.image = pg.transform.rotate(self.image,90)
+            
+        elif self.gap == [1,1]:
+            self.image = pg.transform.rotate(self.image,180)
+
+            
 
         self.occupied =[]
         for x in range(self.width):
