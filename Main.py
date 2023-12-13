@@ -33,7 +33,8 @@ class Main:
         self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6"]
 
         self.all_cutscenes = [Cutscene(self,["2.1","2.2","2.3"],"level 1"),
-                                Cutscene(self,["3.1","3.2"],"level 4")]
+                                Cutscene(self,["3.1","3.2"],"level 4"),
+                                Cutscene(self,["4.1","4.2","4.3","4.4","4.5"],"level 7")]
 
         self.current_cutscene = self.all_cutscenes[0]
 
@@ -364,7 +365,7 @@ class Main:
                     
                     self.wintile = [5,4]
 
-                    self.level_to_level = True
+                    self.level_to_level = False
 
                     self.current_presents = []
 
