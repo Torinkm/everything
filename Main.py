@@ -19,7 +19,7 @@ class Main:
         self.jukebox = os.listdir("Music")
         pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
         pg.mixer.music.play(1)
-        pg.mixer.music.set_volume(0)
+        pg.mixer.music.set_volume(0.5)
         self.running = True #Switch to false when game quit
         self.state = "title_screen" #game state, changes for states like paused and game over
         self.mousedown = False
