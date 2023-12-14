@@ -3,6 +3,7 @@ import numpy as np
 import os
 import random as rng
 from buttons import Button, Slider
+from Animated_Objects import VerticalSine
 
 from cutscenes import *
 from Block import *
@@ -13,25 +14,33 @@ class Main:
     SCREEN_HEIGHT = 1080
     SCREEN_WIDTH = 1920
     def __init__(self):
+        pg.init()
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH,self.SCREEN_HEIGHT),pg.RESIZABLE|pg.SCALED,vsync=1)
         self.jukebox = os.listdir("Music")
-        pg.init()
         pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
         pg.mixer.music.play(1)
-        pg.mixer.music.set_volume(0)
+        pg.mixer.music.set_volume(0.5)
         self.running = True #Switch to false when game quit
         self.state = "title_screen" #game state, changes for states like paused and game over
         self.mousedown = False
         self.changing_state_to = ""
 
-        self.backgroundCol = [202, 228, 241]
+        self.backgroundCol = [5, 60, 15]
 
         self.currentK = [] #list of all keys currently down
         self.keys = [pg.K_a, pg.K_b, pg.K_c, pg.K_d, pg.K_e, pg.K_f, pg.K_g, pg.K_h, pg.K_i, pg.K_j, pg.K_k, pg.K_l, pg.K_m,
                     pg.K_n, pg.K_o, pg.K_p, pg.K_q, pg.K_r, pg.K_s, pg.K_t, pg.K_u, pg.K_v, pg.K_w, pg.K_x, pg.K_y, pg.K_z]
 
         self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6","level 7"]
+
+        self.MENU_BACKGROUND = pg.transform.scale(pg.image.load("Assets/Menu Background.jpg"),(1920,1080))
+
+        self.MenuWreath1 = VerticalSine(1900,0,1080,pg.image.load("Assets/Christmas Wreath.png"),20)
+        self.MenuWreath2 = VerticalSine(1900,1080,1080,pg.image.load("Assets/Christmas Wreath.png"),20)
+        self.MenuWreath3 = VerticalSine(20,300,1080,pg.image.load("Assets/Christmas Wreath.png"),21,0.025)
+        self.MenuWreath4 = VerticalSine(20,1380,1080,pg.image.load("Assets/Christmas Wreath.png"),21,0.025)
+
 
         self.all_cutscenes = [Cutscene(self,["2.1","2.2","2.3"],"level 1"),
                                 Cutscene(self,["3.1","3.2"],"level 4"),
@@ -98,6 +107,7 @@ class Main:
         while self.running:
             delta = self.clock.tick(120) #delta is the seconds between frames eg: 0.02s
             fps = round(self.clock.get_fps())
+            print(fps)
             if not pg.mixer.music.get_busy():
                 pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
                 pg.mixer.music.play(1)
@@ -191,18 +201,19 @@ class Main:
 
             
             elif self.state == "main menu":
-                
+                self.screen.blit(self.MENU_BACKGROUND,(0,0))
+
+                self.MenuWreath1.update()
+                self.MenuWreath1.draw(self.screen)
+                self.MenuWreath2.update()
+                self.MenuWreath2.draw(self.screen)
+                self.MenuWreath3.update()
+                self.MenuWreath3.draw(self.screen)
+                self.MenuWreath4.update()
+                self.MenuWreath4.draw(self.screen)
                 
                 if self.start_button.update(self.mousebox):
                     self.state = "cutscene"
-
-                    
-
-
-
-
-
-
 
                 self.start_button.draw(self.screen)
 
@@ -213,6 +224,16 @@ class Main:
                 if self.exit_button.update(self.mousebox):
                     self.running = False
                 self.exit_button.draw(self.screen)
+
+            elif self.state == "options menu":
+                self.screen.blit(self.MENU_BACKGROUND,(0,0))
+                if self.back_button.update(self.mousebox):
+                    self.state = "main menu"
+                self.back_button.draw(self.screen)
+                self.sfx_Volume_Slider.update(self.mousebox)
+                self.volume = (self.sfx_Volume_Slider.draw(self.screen))
+                pg.mixer.music.set_volume(self.music_Volume_Slider.update(self.mousebox)*3)
+                self.music_Volume_Slider.draw(self.screen)
 
 
 
@@ -429,14 +450,7 @@ class Main:
 
                 
                 self.state = self.changing_state_to
-            elif self.state == "options menu":
-                if self.back_button.update(self.mousebox):
-                    self.state = "main menu"
-                self.back_button.draw(self.screen)
-                self.sfx_Volume_Slider.update(self.mousebox)
-                self.volume = (self.sfx_Volume_Slider.draw(self.screen))
-                pg.mixer.music.set_volume(self.music_Volume_Slider.update(self.mousebox))
-                self.music_Volume_Slider.draw(self.screen)
+            
 
                 
 
