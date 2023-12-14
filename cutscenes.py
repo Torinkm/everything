@@ -16,10 +16,10 @@ class Cutscene():
     def update(self):
 
         self.tick += 1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 15:
+            self.tick = 15
 
-        if self.app.mousedown and self.tick == 10:
+        if self.app.mousedown and self.tick == 15 and ((self.level in self.app.levels) or self.current_slide != self.slides[-1]):
             self.tick = 0
 
             temp = self.slides.index(self.current_slide)
@@ -41,6 +41,14 @@ class Cutscene():
 
             else:
                 self.current_slide = self.slides[temp]
+                
+                
+                
+                
+        elif self.app.mousedown and self.tick == 15 and self.level == "Gag" and self.current_slide == self.slides[-1]:
+            self.tick = 0
+            self.app.state = "Gag"
+            
         
 
 

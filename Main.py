@@ -45,7 +45,7 @@ class Main:
         self.all_cutscenes = [Cutscene(self,["2.1","2.1","2.2","2.3"],"level 1"),
                                 Cutscene(self,["3.1","3.2"],"level 4"),
                                 Cutscene(self,["4.1","4.2","4.3","4.4","4.5"],"level 7"),
-                                Cutscene(self,["5.1","5.2","5.3","5.4"],"level 10")]
+                                Cutscene(self,["5.1","5.2","5.3","5.4"],"Gag")]
 
         self.current_cutscene = self.all_cutscenes[0]
 
@@ -193,6 +193,8 @@ class Main:
                         self.state = "changing state"
                         
                     else:
+                        
+                        
                         self.state = "cutscene"
             
             
@@ -500,7 +502,9 @@ class Main:
 
 
 
-                    self.current_presents.append(Present_Rock(self,(255,0,0),[1,0],1,1,"Rock"))
+                    self.current_presents.append(Present(self,(255,0,0),[1,0],1,1,"Pot"))
+                    
+                    
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,1],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,3],1,1,"Rock"))
                     
@@ -519,6 +523,11 @@ class Main:
                 self.state = self.changing_state_to
                 
                 
+                
+                
+            elif self.state == "Gag":
+                
+                pass
             
 
                 
