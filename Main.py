@@ -479,6 +479,31 @@ class Main:
 
                     self.active_present = self.current_presents[0]
                     
+                    
+                if self.changing_state_to == "level 9":
+                    
+                    
+                    self.wintile = [5,1]
+
+                    self.level_to_level = False
+
+                    self.current_presents = []
+
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[4,3],1,1,"Bleach"))
+                    
+                    
+                    self.current_presents.append(Corner_Block(self,[1,0],[3,1],"Scissors"))
+
+
+
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[2,0],1,1,"Rock"))
+                    
+                    self.current_presents.append(Collectible(self,(255,0,0),[1,0],1,1,"Lock_Pick"))
+                    
+
+                    
+
+                    self.active_present = self.current_presents[0]
 
 
 
