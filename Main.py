@@ -10,10 +10,10 @@ class Main:
     SCREEN_HEIGHT = 1080
     SCREEN_WIDTH = 1920
     def __init__(self):
+        pg.init()
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH,self.SCREEN_HEIGHT),pg.RESIZABLE|pg.SCALED,vsync=1)
         self.jukebox = os.listdir("Music")
-        pg.init()
         pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
         pg.mixer.music.play(1)
         pg.mixer.music.set_volume(0.5)
