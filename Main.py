@@ -177,7 +177,9 @@ class Main:
     
                     self.active_present.big_draw()
                     
-                    
+                
+                
+                
                     
                     
                 if self.win:
@@ -490,7 +492,7 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[4,3],1,1,"Bleach"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[0,4],1,1,"Bleach"))
                     
                     
                     self.current_presents.append(Corner_Block(self,[1,1],[1,1],"Scissors"))
