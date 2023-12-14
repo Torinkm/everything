@@ -389,7 +389,6 @@ class Main:
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,3],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[3,1],1,1,"Rock"))
                     
-
                     
 
                     self.active_present = self.current_presents[0]
