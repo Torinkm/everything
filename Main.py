@@ -32,7 +32,7 @@ class Main:
         self.keys = [pg.K_a, pg.K_b, pg.K_c, pg.K_d, pg.K_e, pg.K_f, pg.K_g, pg.K_h, pg.K_i, pg.K_j, pg.K_k, pg.K_l, pg.K_m,
                     pg.K_n, pg.K_o, pg.K_p, pg.K_q, pg.K_r, pg.K_s, pg.K_t, pg.K_u, pg.K_v, pg.K_w, pg.K_x, pg.K_y, pg.K_z]
 
-        self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6","level 7","level 8","level 9"]
+        self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6","level 7","level 8","level 9","level 10"]
 
         self.MENU_BACKGROUND = pg.transform.scale(pg.image.load("Assets/Menu Background.jpg"),(1920,1080))
 
@@ -108,7 +108,6 @@ class Main:
         while self.running:
             delta = self.clock.tick(120) #delta is the seconds between frames eg: 0.02s
             fps = round(self.clock.get_fps())
-            print(fps)
             if not pg.mixer.music.get_busy():
                 pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
                 pg.mixer.music.play(1)
@@ -179,7 +178,7 @@ class Main:
                     
                 
                 
-                
+                    self.screen.blit(pg.image.load(("Assets/Restart_Layer.png")),(0,0))
                     
                     
                 if self.win:
@@ -477,8 +476,6 @@ class Main:
                     self.current_presents.append(Present_Rock(self,(255,0,0),[4,0],1,1,"Rock"))
                     self.current_presents.append(Present_Rock(self,(255,0,0),[1,3],1,1,"Rock"))
                     
-                    self.current_presents.append(Collectible(self,(255,0,0),[1,0],1,1,"Lock_Pick"))
-                    
 
                     
 
@@ -516,6 +513,23 @@ class Main:
                     
 
                     self.active_present = self.current_presents[0]
+                    
+                    
+                    
+                    
+                    
+                if self.changing_state_to == "level 10":
+                    
+                    flag = False
+                    for item in ["Bolt Cutters","Pocket Knife", "Lock Pick"]:
+                        if item not in self.player_items:
+                            flag = True
+                    
+                    if not flag:
+                        self.state = "good ending"
+                        
+                    else:
+                        self.state = "bad ending"
 
 
 

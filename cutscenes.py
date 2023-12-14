@@ -19,7 +19,7 @@ class Cutscene():
         if self.tick > 15:
             self.tick = 15
 
-        if self.app.mousedown and self.tick == 15 and ((self.level in self.app.levels) or self.current_slide != self.slides[-1]):
+        if self.app.mousedown and self.tick == 15 and ((self.level in self.app.levels):
             self.tick = 0
 
             temp = self.slides.index(self.current_slide)
