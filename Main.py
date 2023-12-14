@@ -32,7 +32,7 @@ class Main:
         self.keys = [pg.K_a, pg.K_b, pg.K_c, pg.K_d, pg.K_e, pg.K_f, pg.K_g, pg.K_h, pg.K_i, pg.K_j, pg.K_k, pg.K_l, pg.K_m,
                     pg.K_n, pg.K_o, pg.K_p, pg.K_q, pg.K_r, pg.K_s, pg.K_t, pg.K_u, pg.K_v, pg.K_w, pg.K_x, pg.K_y, pg.K_z]
 
-        self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6","level 7","level 8"]
+        self.levels = ["level 1","level 2", "level 3","level 4","level 5","level 6","level 7","level 8","level 9"]
 
         self.MENU_BACKGROUND = pg.transform.scale(pg.image.load("Assets/Menu Background.jpg"),(1920,1080))
 
@@ -42,7 +42,7 @@ class Main:
         self.MenuWreath4 = VerticalSine(20,1380,1080,pg.image.load("Assets/Christmas Wreath.png"),21,0.025)
 
 
-        self.all_cutscenes = [Cutscene(self,["2.1","2.2","2.3"],"level 1"),
+        self.all_cutscenes = [Cutscene(self,["2.1","2.1","2.2","2.3"],"level 1"),
                                 Cutscene(self,["3.1","3.2"],"level 4"),
                                 Cutscene(self,["4.1","4.2","4.3","4.4","4.5"],"level 7")]
 
@@ -459,7 +459,7 @@ class Main:
 
                     self.current_presents = []
 
-                    self.current_presents.append(Golden_Present(self,(100,0,100),[4,3],1,1,"Needle"))
+                    self.current_presents.append(Golden_Present(self,(100,0,100),[4,3],1,1,"Bleach"))
                     
                     
                     self.current_presents.append(Corner_Block(self,[1,0],[3,1],"Scissors"))
@@ -483,7 +483,7 @@ class Main:
                 if self.changing_state_to == "level 9":
                     
                     
-                    self.wintile = [5,1]
+                    self.wintile = [5,2]
 
                     self.level_to_level = False
 
@@ -492,13 +492,17 @@ class Main:
                     self.current_presents.append(Golden_Present(self,(100,0,100),[4,3],1,1,"Bleach"))
                     
                     
-                    self.current_presents.append(Corner_Block(self,[1,0],[3,1],"Scissors"))
+                    self.current_presents.append(Corner_Block(self,[1,1],[1,1],"Scissors"))
+                    self.current_presents.append(Corner_Block(self,[1,0],[0,2],"Scissors"))
 
 
 
-                    self.current_presents.append(Present_Rock(self,(255,0,0),[2,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[1,0],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[4,1],1,1,"Rock"))
+                    self.current_presents.append(Present_Rock(self,(255,0,0),[3,3],1,1,"Rock"))
                     
-                    self.current_presents.append(Collectible(self,(255,0,0),[1,0],1,1,"Lock_Pick"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[3,0],2,1,"Saucepan"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,2],3,1,"Saucepan"))
                     
 
                     
