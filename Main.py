@@ -107,6 +107,7 @@ class Main:
         while self.running:
             delta = self.clock.tick(120) #delta is the seconds between frames eg: 0.02s
             fps = round(self.clock.get_fps())
+            print(fps)
             if not pg.mixer.music.get_busy():
                 pg.mixer.music.load(f"Music\{rng.choice(self.jukebox)}")
                 pg.mixer.music.play(1)
@@ -231,7 +232,7 @@ class Main:
                 self.back_button.draw(self.screen)
                 self.sfx_Volume_Slider.update(self.mousebox)
                 self.volume = (self.sfx_Volume_Slider.draw(self.screen))
-                pg.mixer.music.set_volume(self.music_Volume_Slider.update(self.mousebox))
+                pg.mixer.music.set_volume(self.music_Volume_Slider.update(self.mousebox)*3)
                 self.music_Volume_Slider.draw(self.screen)
 
 
