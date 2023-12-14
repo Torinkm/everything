@@ -536,6 +536,20 @@ class Main:
                 
                 self.state = self.changing_state_to
                 
+                
+                
+                
+            elif self.state == "bad ending":
+                
+                
+                self.screen.blit(pg.image.load(("Assets/bad_ending.png")),(0,0))
+                
+                
+            elif self.state == "bad ending":
+                
+                
+                self.screen.blit(pg.image.load(("Assets/good_ending.png")),(0,0))
+                
 
             
 
