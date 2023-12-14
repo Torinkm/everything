@@ -4,10 +4,12 @@ from math import *
 class NoAnimation:
     def __init__(self, x, y, height, img:pg.surface.Surface = pg.surface.Surface((0,0))):
         scale = height/img.get_height()
-        self.image = pg.transform.scale_by(img,scale)
+        
+        self.image = pg.transform.scale(img,[scale,scale])
         self.pos = pg.Vector2(x,y)
         self.rect = pg.rect.Rect(self.image.get_rect())
         self.rect.center = self.pos
+        
     def update(self):
         if self.pos.y>=1080+self.rect.h/2:
             self.pos.y-=1080+self.rect.h/2
