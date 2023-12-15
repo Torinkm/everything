@@ -520,7 +520,7 @@ class Main:
                     
                 if self.changing_state_to == "level 10":
                     
-                    flag = False
+                    flag = True
                     for item in ["Bolt Cutters","Pocket Knife", "Lock Pick"]:
                         if item not in self.player_items:
                             flag = True

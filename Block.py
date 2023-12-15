@@ -442,7 +442,7 @@ class Golden_Present():
                         self.app.state = "cutscene"
 
 
-            if pg.K_a in self.app.currentK and self.left_move:
+            elif pg.K_a in self.app.currentK and self.left_move:
                 #IF TRY TO MOVE LEFT!
                 self.posx -= 1
 
@@ -462,7 +462,7 @@ class Golden_Present():
 
 
 
-            if pg.K_s in self.app.currentK and self.down_move:
+            elif pg.K_s in self.app.currentK and self.down_move:
                 #IF TRY TO MOVE DOWN!
                 self.posy += 1
 
@@ -483,7 +483,7 @@ class Golden_Present():
 
 
 
-            if pg.K_w in self.app.currentK and self.up_move:
+            elif pg.K_w in self.app.currentK and self.up_move:
                 #IF TRY TO MOVE DOWN!
                 self.posy -= 1
 

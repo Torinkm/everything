@@ -45,9 +45,7 @@ class Cutscene():
                 
                 
                 
-        elif self.app.mousedown and self.tick == 15 and self.level == "Gag" and self.current_slide == self.slides[-1]:
-            self.tick = 0
-            self.app.state = "Gag"
+
             
         
 
