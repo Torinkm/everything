@@ -42,10 +42,10 @@ class Main:
         self.MenuWreath4 = VerticalSine(20,1380,1080,pg.image.load("Assets/Christmas Wreath.png"),21,0.025)
 
 
-        self.all_cutscenes = [Cutscene(self,["2.1","2.1","2.2","2.3"],"level 1"),
+        self.all_cutscenes = [Cutscene(self,["2.1","2.2","2.3"],"level 1"),
                                 Cutscene(self,["3.1","3.2"],"level 4"),
                                 Cutscene(self,["4.1","4.2","4.3","4.4","4.5"],"level 7"),
-                                Cutscene(self,["5.1","5.2","5.3","5.4","5.5","5.6"],"Level 10")]
+                                Cutscene(self,["5.1","5.2","5.3","5.4","5.5","5.6"],"level 10")]
 
         self.current_cutscene = self.all_cutscenes[0]
 
@@ -341,8 +341,8 @@ class Main:
 
                     self.current_presents.append(Golden_Present(self,(100,0,100),[1,2],1,1,"Golden_Car"))
 
-                    self.current_presents.append(Present_Hori(self,(255,0,0),[0,3],3,1,"Anuc"))
-                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,0],3,1,"Anuc"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[0,3],3,1,"Car_2x1"))
+                    self.current_presents.append(Present_Hori(self,(255,0,0),[2,0],3,1,"Car_2x1"))
                     self.current_presents.append(Present_Vert(self,(255,0,0),[1,0],1,2,"Car_1x2"))
                     self.current_presents.append(Present_Vert(self,(255,0,0),[4,1],1,2,"Car_1x2"))
 
@@ -520,16 +520,18 @@ class Main:
                     
                 if self.changing_state_to == "level 10":
                     
-                    flag = True
+                    flag = False
                     for item in ["Bolt Cutters","Pocket Knife", "Lock Pick"]:
                         if item not in self.player_items:
                             flag = True
                     
                     if not flag:
                         self.state = "good ending"
+                        self.changing_state_to = "good ending"
                         
                     else:
                         self.state = "bad ending"
+                        self.changing_state_to = "bad ending"
 
 
 
@@ -545,7 +547,7 @@ class Main:
                 self.screen.blit(pg.image.load(("Assets/bad_ending.png")),(0,0))
                 
                 
-            elif self.state == "bad ending":
+            elif self.state == "good ending":
                 
                 
                 self.screen.blit(pg.image.load(("Assets/good_ending.png")),(0,0))

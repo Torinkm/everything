@@ -89,8 +89,8 @@ class Corner_Block():
     def update(self):
         
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.clickrect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -187,7 +187,7 @@ class Corner_Block():
 
             
 
-        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         

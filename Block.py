@@ -51,8 +51,8 @@ class Present():
     def update(self):
 
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.rect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -147,7 +147,7 @@ class Present():
 
             
 
-        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         
@@ -301,8 +301,8 @@ class Golden_Present():
         self.right_win = False
 
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.rect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -405,7 +405,7 @@ class Golden_Present():
 
             
 
-        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         
@@ -628,8 +628,8 @@ class Present():
     def update(self):
 
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.rect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -724,7 +724,7 @@ class Present():
 
             
 
-        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         
@@ -884,8 +884,8 @@ class Present_Vert():
         self.right_win = False
 
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.rect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -942,7 +942,7 @@ class Present_Vert():
 
             
 
-        if (pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         
@@ -1066,8 +1066,8 @@ class Present():
     def update(self):
 
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.rect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -1162,7 +1162,7 @@ class Present():
 
             
 
-        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK or pg.K_s in self.app.currentK or pg.K_w in self.app.currentK) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         
@@ -1324,8 +1324,8 @@ class Present_Hori():
         self.right_win = False
 
         self.tick +=1
-        if self.tick > 10:
-            self.tick = 10
+        if self.tick > 5:
+            self.tick = 5
 
         if pg.Rect.colliderect(self.rect, self.app.mousebox) and self.app.mousedown:
             self.app.active_present = self
@@ -1399,7 +1399,7 @@ class Present_Hori():
 
             
 
-        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK ) and self.tick >= 10 and self.app.active_present == self:
+        if (pg.K_d in self.app.currentK or pg.K_a in self.app.currentK ) and self.tick >= 5 and self.app.active_present == self:
 
             self.tick = 0
         
